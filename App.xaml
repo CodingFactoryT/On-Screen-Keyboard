@@ -1,0 +1,9 @@
+﻿<Application x:Class="On_Screen_Keyboard.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:On_Screen_Keyboard"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="Resources/CustomStyles/KeyboardButtonStyle.xaml"/>
+    </Application.Resources>
+</Application>
