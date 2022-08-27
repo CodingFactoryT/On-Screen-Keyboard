@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:On_Screen_Keyboard"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="Resources/CustomStyles/KeyboardButtonStyle.xaml"/>
+        <ResourceDictionary Source="Resources/CustomStyles.xaml"/>
     </Application.Resources>
 </Application>

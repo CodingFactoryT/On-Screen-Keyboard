@@ -13,5 +13,6 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         Visibility="Hidden">
+    
     <local:OnScreenKeyboard/>
 </Window>
