@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style TargetType="Label" x:Key="DraggableIconLabelStyle">
+    <Style TargetType="Label" x:Key="DragIndicatorStyle">
         <Setter Property="Background" Value="#BBB"/>
         <Setter Property="Padding" Value="100 2"/>
         <Setter Property="Margin" Value="10"/>

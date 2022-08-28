@@ -1,10 +1,5 @@
-﻿using System;
-using System.Configuration;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using WindowsInput;
-using WindowsInput.Native;
 
 namespace On_Screen_Keyboard
 {
@@ -16,17 +11,33 @@ namespace On_Screen_Keyboard
         public OnScreenKeyboard()
         {
             InitializeComponent();
-            mainGrid.Background = (Brush)new BrushConverter().ConvertFrom(ConfigurationManager.AppSettings["PopupBackgroundColor"]);
             userControl = this;
+
+            mainGrid.Background = DataFetcher.GetBrushByName("PopupBackgroundColor");
+
             new ButtonGenerator().Generate();
+
+            SetPopupSizeAndPosition(0.5, 0.3);  //the size of the popup is half of the screen width and a nearly a third od the screen height
+            ActivateDragBehaviour();
+
+            ConfigureBtn_Enter();
+            ConfigureBtn_Exit();
+        }
+
+        private void SetPopupSizeAndPosition(double screenWidthMultiplier, double screenHeightMuliplier)
+        {
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
-            popup.Width = screenWidth * 0.5;
-            popup.Height = screenHeight * 0.3;
 
-            popup.HorizontalOffset = screenWidth/2 - popup.Width/2;
-            popup.VerticalOffset = screenHeight - popup.Height * 1.3;
+            popup.Width = screenWidth * screenWidthMultiplier;
+            popup.Height = screenHeight * screenHeightMuliplier;
 
+            popup.HorizontalOffset = screenWidth / 2 - popup.Width / 2; //positions the popup in the middle of the horizontal screen axis
+            popup.VerticalOffset = screenHeight - popup.Height * (1.6 - screenHeightMuliplier); //always positions the popup above the taskbar
+        }
+
+        private void ActivateDragBehaviour()
+        {
             popup.MouseDown += (s, e) =>
             {
                 thumb.RaiseEvent(e);
@@ -37,30 +48,22 @@ namespace On_Screen_Keyboard
                 popup.HorizontalOffset += e.HorizontalChange;
                 popup.VerticalOffset += e.VerticalChange;
             };
-            Brush backgroundColor = (Brush)new BrushConverter().ConvertFrom(ConfigurationManager.AppSettings["KeyboardButtonColor"]);
-            Btn_Enter.Background = backgroundColor;
-            Btn_Exit.Background = backgroundColor;
-        }
-        private void Btn_Enter_Click(object sender, RoutedEventArgs e)
-        {
-            InputSimulator sim = new InputSimulator();
-            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
         }
 
-        private void Btn_Exit_Click(object sender, RoutedEventArgs e)
+        private void ConfigureBtn_Enter()
         {
-            InputSimulator inputSimulator = new InputSimulator();
+            Btn_Enter.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
 
-            foreach (KeyboardButtonData b in ButtonGenerator.buttons)
-            {
-                if (b.isToggable)
-                {
-                    VirtualKeyCode keyCode = ButtonGenerator.getKeyCode(b.keyCode);
-                    inputSimulator.Keyboard.KeyUp(keyCode);
-                }
-            }
+            ButtonClickHandler buttonClickHandler = new ButtonClickHandler();
+            Btn_Enter.Click += buttonClickHandler.Btn_Enter_Click;
+        }
 
-            Environment.Exit(0);
+        private void ConfigureBtn_Exit()
+        {
+            Btn_Exit.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
+
+            ButtonClickHandler buttonClickHandler = new ButtonClickHandler();
+            Btn_Exit.Click += buttonClickHandler.Btn_Exit_Click;
         }
     }
 }
