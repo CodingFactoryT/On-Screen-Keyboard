@@ -15,10 +15,10 @@
     </Style>
 
     <Style TargetType="Button" x:Key="KeyboardButtonStyle">
-        <Setter Property="Background" Value="#EEE"/>
         <Setter Property="Width" Value="55"/>
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="Margin" Value="2"/>
+
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="5"/>

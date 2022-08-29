@@ -47,6 +47,9 @@ namespace On_Screen_Keyboard
             else
                 keyboardButton.Click += buttonClickHandler.NonToggableButton_Click;
 
+            AnimationHandler animationHandler = new AnimationHandler(keyboardButton);
+            keyboardButton.PreviewMouseDown += animationHandler.ButtonMouseDownAnimation;
+            keyboardButton.PreviewMouseUp += animationHandler.ButtonMouseUpAnimation;
             return keyboardButton;
         }
     }

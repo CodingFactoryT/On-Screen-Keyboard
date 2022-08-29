@@ -20,8 +20,8 @@ namespace On_Screen_Keyboard
             SetPopupSizeAndPosition(0.5, 0.3);  //the size of the popup is half of the screen width and a nearly a third od the screen height
             ActivateDragBehaviour();
 
-            ConfigureBtn_Enter();
-            ConfigureBtn_Exit();
+            ConfigureBtn_ENTER();
+            ConfigureBtn_EXIT();
         }
 
         private void SetPopupSizeAndPosition(double screenWidthMultiplier, double screenHeightMuliplier)
@@ -38,7 +38,7 @@ namespace On_Screen_Keyboard
 
         private void ActivateDragBehaviour()
         {
-            popup.MouseDown += (s, e) =>
+            popup.MouseLeftButtonDown += (s, e) =>
             {
                 thumb.RaiseEvent(e);
             };
@@ -50,20 +50,24 @@ namespace On_Screen_Keyboard
             };
         }
 
-        private void ConfigureBtn_Enter()
+        private void ConfigureBtn_ENTER()
         {
-            Btn_Enter.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
+            Btn_ENTER.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
 
             ButtonClickHandler buttonClickHandler = new ButtonClickHandler();
-            Btn_Enter.Click += buttonClickHandler.Btn_Enter_Click;
+            Btn_ENTER.Click += buttonClickHandler.Btn_Enter_Click;
+
+            AnimationHandler animationHandler = new AnimationHandler(Btn_ENTER);
+            Btn_ENTER.PreviewMouseDown += animationHandler.ButtonMouseDownAnimation;
+            Btn_ENTER.PreviewMouseUp += animationHandler.ButtonMouseUpAnimation;
         }
 
-        private void ConfigureBtn_Exit()
+        private void ConfigureBtn_EXIT()
         {
-            Btn_Exit.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
+            Btn_EXIT.Background = DataFetcher.GetBrushByName("KeyboardButtonColor");
 
             ButtonClickHandler buttonClickHandler = new ButtonClickHandler();
-            Btn_Exit.Click += buttonClickHandler.Btn_Exit_Click;
+            Btn_EXIT.Click += buttonClickHandler.Btn_Exit_Click;
         }
     }
 }

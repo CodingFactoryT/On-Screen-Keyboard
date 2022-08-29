@@ -72,8 +72,7 @@ namespace On_Screen_Keyboard
 
         public void SimulateToggableButtonPress(string buttonName)
         {
-            Button button = DataFetcher.GetControlByName(buttonName) as Button;
-            
+            Button button = DataFetcher.GetControlByName(buttonName) as Button;      
         }
 
         private void ToggleRow1Visibility(bool isFnctToggled)

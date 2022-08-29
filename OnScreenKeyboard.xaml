@@ -20,8 +20,8 @@
                     <StackPanel x:Name="row5" Orientation="Horizontal" Height="55"/>
                 </StackPanel>
 
-                <Button x:Name="Btn_Enter" Content="Enter" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="11 82" Width="112" Height="106" Style="{StaticResource KeyboardButtonStyle}"/>
-                <Button x:Name="Btn_Exit" Content="x" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Padding="2 2"  Width="25" Height="25" Style="{StaticResource KeyboardButtonStyle}"/>
+                <Button x:Name="Btn_ENTER" Content="Enter" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="11 82" Width="112" Height="106" Style="{StaticResource KeyboardButtonStyle}"/>
+                <Button x:Name="Btn_EXIT" Content="x" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Padding="2 2"  Width="25" Height="25" Style="{StaticResource KeyboardButtonStyle}"/>
                 
                 <Thumb x:Name="thumb" Width="0" Height="0"/>
             </Grid>
